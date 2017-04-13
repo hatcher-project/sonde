@@ -2,6 +2,8 @@
   "name": "hatcher-sonde",
   "devDependencies": {
     "gulp-better-rollup": "^1.1.1",
+    "gulp-cssnano": "^2.1.2",
+    "gulp-sass": "^3.1.0",
     "gulp-sourcemaps": "^2.5.1",
     "gulp-uglify": "^2.1.2",
     "rollup-plugin-buble": "^0.15.0",

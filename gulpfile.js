@@ -2,17 +2,29 @@ var gulp = require('gulp')
 var rollup = require('gulp-better-rollup')
 var buble = require('rollup-plugin-buble')
 var sourcemaps = require('gulp-sourcemaps')
+var cssnano = require('gulp-cssnano')
+var sass = require('gulp-sass')
+var uglify = require('gulp-uglify')
 
 gulp.task('js', () => {
     gulp.src('src/js/index.js')
     .pipe(sourcemaps.init())
-    .pipe(rollup({
-        plugins: [
-            buble()
-        ],
-        moduleName: 'HatcherSonde'
-    }, 'umd'))
-    // inlining the sourcemap into the exported .js file
+        .pipe(rollup({
+            plugins: [
+                buble()
+            ],
+            moduleName: 'HatcherSonde'
+        }, 'umd'))
+        .pipe(uglify())
+    .pipe(sourcemaps.write(''))
+    .pipe(gulp.dest('dist'))
+});
+
+gulp.task('sass', () => {
+    gulp.src('src/sass/index.scss')
+    .pipe(sourcemaps.init())
+        .pipe(sass().on('error', sass.logError))
+        .pipe(cssnano())
     .pipe(sourcemaps.write(''))
     .pipe(gulp.dest('dist'))
 });

@@ -1,0 +1,52 @@
+.phpsonde{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  font-family: monospace;
+  color: #333;
+}
+
+.phpsonde select{
+  border-radius: 3px;
+  padding: 0;
+  margin: 0;
+}
+
+.phpsonde-bubble{
+  border-radius: 10px;
+  background: #ffffff;
+  font-size: 9px;
+  padding: 2px 4px;
+  margin-left: -4px;
+  color: #333;
+}
+
+.phpsonde-fill{
+  flex: 1;
+}
+
+.phpsonde-fill:before{
+  content: ' ';
+  display: inline-block;
+}
+
+.phpsonde-hidden{
+  display: none !important;
+}
+
+.phpsonde-stacktrace pre{
+  background: #555;
+  color: #DDD;
+  padding: 5px 8px;
+}
+
+
+.phpsonde-data-details table{
+  width: 100%;
+  border-collapse: collapse;
+}
+.phpsonde-data-details td{
+  border: 1px solid #DDD;
+}

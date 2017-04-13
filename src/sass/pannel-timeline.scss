@@ -1,0 +1,56 @@
+.phpsonde-timeline-panel .phpsonde-summary{
+  display: flex;
+}
+
+.phpsonde-timeline-panel>ul>li:hover{
+  background: #EEE;
+}
+
+.phpsonde-timeline-panel .phpsonde-timebar{
+  flex: 1;
+}
+.phpsonde-timeline-panel .phpsonde-timebar>div{
+  background: #00A5E3;
+  height: 8px;
+  margin: 3px 0;
+  border-radius: 5px;
+  min-width: 1px;
+}
+
+.phpsonde-timeline-panel .phpsonde-label{
+  width: 130px;
+  text-align: left;
+  padding-left: 8px;
+}
+.phpsonde-timeline-panel .phpsonde-duration{
+  text-align: right;
+  width: 65px;
+  padding-right: 8px;
+}
+
+.phpsonde-timeline-panel header{
+  padding: 3px 8px;
+}
+
+/** Timeline details **/
+
+.phpsonde-timeline-panel .phpsonde-details h3{
+  margin-top: 0;
+}
+
+.phpsonde-timeline-panel .phpsonde-details{
+  padding: 0 8px;
+  margin: 10px 15px;
+  display: none;
+}
+
+.phpsonde-timeline-panel .phpsonde-details>*{
+  margin: 10px;
+  border: 1px dotted #CCC;
+  padding: 5px;
+  min-width: 150px;
+}
+
+.phpsonde-timeline-panel .phpsonde-details.phpsonde-open{
+  display: flex;
+}

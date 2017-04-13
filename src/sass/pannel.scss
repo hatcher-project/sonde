@@ -1,0 +1,22 @@
+/** PANEL */
+
+.phpsonde-panel{
+  display: none;
+}
+
+.phpsonde-panel.phpsonde-open{
+  display: block;
+}
+
+.phpsonde-panel>ul{
+  margin: 0;
+  list-style: none;
+  padding-left: 0;
+}
+.phpsonde-panel>ul>li{
+  border-top: 1px solid #DDD;
+  font-size: 0.8em;
+}
+.phpsonde-panel>ul>li:last-child{
+  border-bottom: 1px solid #DDD;
+}

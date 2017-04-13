@@ -1,0 +1,47 @@
+.phpsonde>header{
+  background: #3e3e3e;
+  color: #d8d8d8;
+  display: flex;
+  align-items: center;
+}
+
+.phpsonde>header>*{
+  padding: 8px 10px;
+}
+
+.phpsonde>header>ul>*:first-child{
+  border: 0;
+}
+
+/* HEADER LIST */
+
+.phpsonde>header>ul{
+  margin: 0;
+  list-style: none;
+  display: flex;
+  padding: 0;
+}
+
+
+
+/** PANEL TAB **/
+
+.phpsonde-panel-tab{
+  font-weight: bold;
+  cursor: pointer;
+  padding: 8px 10px;
+}
+
+.phpsonde-panel-tab.phpsonde-open{
+  background: rgba(120, 204, 71, 0.5);
+  color: #fff;
+}
+
+
+/* SELECT BOX */
+
+.phpsonde-request-select > select{
+  background: #404040;
+  color: #ddd;
+  border: 1px solid #6d6d6d;
+}
