@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde;
 
-
 class Renderer
 {
 
@@ -13,7 +12,8 @@ class Renderer
      * Get the hatcher sonde javascript library as a string
      * @return string
      */
-    public static function getInlineJavascriptLibrary(){
+    public static function getInlineJavascriptLibrary()
+    {
         return file_get_contents(__DIR__ . '/../dist/index.js');
     }
 
@@ -21,7 +21,8 @@ class Renderer
      * Get the hatcher sonde css library as a string
      * @return string
      */
-    public static function getInlineCssLibrary(){
+    public static function getInlineCssLibrary()
+    {
         return file_get_contents(__DIR__ . '/../dist/index.css');
     }
 
@@ -34,7 +35,8 @@ class Renderer
      * @param BaseSonde $sonde
      * @return mixed
      */
-    public static function getInlineJavascriptSetup(BaseSonde $sonde){
+    public static function getInlineJavascriptSetup(BaseSonde $sonde)
+    {
         $template = file_get_contents(__DIR__ . '/setupTemplate.js');
         return str_replace('[[DATA]]', addslashes(json_encode($sonde->collectData())), $template);
     }
@@ -48,7 +50,8 @@ class Renderer
      * @param BaseSonde $sonde
      * @return string
      */
-    public static function renderSetupInHtml($html, BaseSonde $sonde){
+    public static function renderSetupInHtml($html, BaseSonde $sonde)
+    {
         $setup = self::getInlineJavascriptSetup($sonde);
         $setup = "<script>$setup</script>";
         $html = self::injectHtml($html, $setup, '</body>');
@@ -65,7 +68,8 @@ class Renderer
      * @param BaseSonde $sonde
      * @return string
      */
-    public static function renderAllInHtml($html, BaseSonde $sonde){
+    public static function renderAllInHtml($html, BaseSonde $sonde)
+    {
         $js = self::getInlineJavascriptLibrary();
         $css = self::getInlineCssLibrary();
         $setup = self::getInlineJavascriptSetup($sonde);
@@ -84,8 +88,9 @@ class Renderer
      * @param $html
      * @return string
      */
-    public static function addExternalCss($path, $html){
-        return self::injectHtml($html, '<link rel="stylesheet" type="text/css" href="' . $path . '">' , '</head>');
+    public static function addExternalCss($path, $html)
+    {
+        return self::injectHtml($html, '<link rel="stylesheet" type="text/css" href="' . $path . '">', '</head>');
     }
 
     /**
@@ -94,11 +99,13 @@ class Renderer
      * @param $html
      * @return string
      */
-    public static function addExternalJs($path, $html){
-        return self::injectHtml($html, '<script type="text/javascript" src="' . $path . '"></script>' , '</body>');
+    public static function addExternalJs($path, $html)
+    {
+        return self::injectHtml($html, '<script type="text/javascript" src="' . $path . '"></script>', '</body>');
     }
 
-    public static function renderAsResponseHeaders(BaseSonde $sonde, $maxHeaderLength = 4090){
+    public static function renderAsResponseHeaders(BaseSonde $sonde, $maxHeaderLength = 4090)
+    {
         $headers = [];
         $headerName = 'phpsondereport';
 
@@ -113,8 +120,8 @@ class Renderer
 
         $headers[$headerName] = $chunks[0];
 
-        if(count($chunks) > 1){
-            for($i = 1; $i < count($chunks); $i++){
+        if (count($chunks) > 1) {
+            for ($i = 1; $i < count($chunks); $i++) {
                 $headers[$headerName . '-' . $i] = $chunks[$i];
             }
         }

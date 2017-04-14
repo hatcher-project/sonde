@@ -80,40 +80,37 @@ class Bar {
 
     listenForXhrReports(){
         var self = this;
-        onXhrCompletes(function(xhr){
+        onXhrCompletes(function (xhr) {
 
             let headerName = 'phpsondereport';
 
             let report = xhr.getResponseHeader(headerName);
 
-            if(report){
-
+            if (report) {
                 let i = 1;
                 let chunk;
-                while(chunk = xhr.getResponseHeader(headerName + '-' + i)){
+                while (chunk = xhr.getResponseHeader(headerName + '-' + i)) {
                     report += chunk;
                     i++;
                 }
 
-                try{
+                try {
                     report = atob(report);
                     report = JSON.parse(report);
-                } catch (e){
+                } catch (e) {
                     console.error('Sonde was unable to decode data fro ajax request, please see the error below'
                         + ' and report it on https://github.com/hatcher-project/sonde/issues'
                         + ' with as much details as possible, including your browser version');
                     console.error(e);
                 }
 
-                if(report.reportBundle){
-                    for(let i = 0; i < report.reportBundle.length; i++){
+                if (report.reportBundle) {
+                    for (let i = 0; i < report.reportBundle.length; i++) {
                         self.addReport('xhr', report.reportBundle[i]);
                     }
                 } else {
                     self.addReport('XHR', report);
                 }
-
-
             }
 
 

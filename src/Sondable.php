@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde;
 
-
 interface Sondable
 {
 
@@ -15,5 +14,4 @@ interface Sondable
      * @return mixed
      */
     public function reportData(&$data);
-
 }

@@ -1,5 +1,5 @@
-document.addEventListener('DOMContentLoaded', function(){
-    if(window.HatcherSonde){
+document.addEventListener('DOMContentLoaded', function () {
+    if (window.HatcherSonde) {
         var rawData = '[[DATA]]';
 
         var bar = new window.HatcherSonde.Bar();
@@ -8,7 +8,6 @@ document.addEventListener('DOMContentLoaded', function(){
         bar.open();
 
         bar.listenForXhrReports();
-
     } else {
         console.error('Unable to find the HatcherSonde library. Make sure you included the javascript library');
     }

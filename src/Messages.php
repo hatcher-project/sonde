@@ -16,7 +16,8 @@ class Messages implements Sondable
      * Adds a message
      * @param string $message
      */
-    public function addMessage($message){
+    public function addMessage($message)
+    {
         $this->messages[] = ['text' => $message];
     }
 
@@ -27,6 +28,4 @@ class Messages implements Sondable
     {
         $data['messages'] = $this->messages;
     }
-
-
 }

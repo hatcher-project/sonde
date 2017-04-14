@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde;
 
-
 class BaseSonde
 {
 
@@ -19,7 +18,8 @@ class BaseSonde
      * @param $name
      * @param Sondable $sondable
      */
-    public function plug($name, Sondable $sondable){
+    public function plug($name, Sondable $sondable)
+    {
         $this->sondables[$name] = $sondable;
     }
 
@@ -28,7 +28,8 @@ class BaseSonde
      * @param $name
      * @return Sondable
      */
-    public function get($name){
+    public function get($name)
+    {
         return $this->sondables[$name];
     }
 
@@ -36,13 +37,12 @@ class BaseSonde
      * Collect all data and returns them as an associative array
      * @return array
      */
-    public function collectData(){
+    public function collectData()
+    {
         $data = [];
-        foreach($this->sondables as $s){
+        foreach ($this->sondables as $s) {
             $s->reportData($data);
         }
         return $data;
     }
-
-
 }

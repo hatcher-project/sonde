@@ -8,13 +8,11 @@ export default function makeElement(tag, content, classList, attr)
     }
 
     if (classList) {
-
         let classes = classList.split(' ');
 
-        for(let i = 0; i<classes.length; i++){
+        for (let i = 0; i<classes.length; i++) {
             e.classList.add(classes[i]);
         }
-
     }
 
     if (attr) {

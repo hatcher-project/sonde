@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde;
 
-
 class Sonde extends BaseSonde
 {
 
@@ -19,7 +18,8 @@ class Sonde extends BaseSonde
      * @param $profileType
      * @return Profile
      */
-    public function startProfile($profileType){
+    public function startProfile($profileType)
+    {
         $profile = new Profile($profileType);
         $this->getProfiler()->addProfile($profile);
         return $profile;
@@ -28,7 +28,8 @@ class Sonde extends BaseSonde
     /**
      * @return Profiler
      */
-    public function getProfiler(){
+    public function getProfiler()
+    {
         return $this->get('profiler');
     }
 
@@ -37,12 +38,10 @@ class Sonde extends BaseSonde
      * Adds a message to be reported in the bar
      * @param $message
      */
-    public function addMessage($message){
+    public function addMessage($message)
+    {
         /* @var \Hatcher\Sonde\Messages $messages; */
         $messages = $this->get('messages');
         $messages->addMessage($message);
     }
-
-
-
 }

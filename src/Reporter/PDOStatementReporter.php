@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde\Reporter;
 
-
 use Hatcher\Sonde\Sonde;
 use PDO;
 
@@ -37,10 +36,10 @@ class PDOStatementReporter extends \PDOStatement
     /**
      * @inheritdoc
      */
-    public function bindParam($parameter, &$variable, $data_type = PDO::PARAM_STR, $length = null, $driver_options = null)
+    public function bindParam($parameter, &$variable, $data_type = PDO::PARAM_STR, $length = null, $driver_opts = null)
     {
         $this->boundValues[$parameter] = $variable;
-        return parent::bindParam($parameter, $variable, $data_type, $length, $driver_options);
+        return parent::bindParam($parameter, $variable, $data_type, $length, $driver_opts);
     }
 
     /**
@@ -58,7 +57,7 @@ class PDOStatementReporter extends \PDOStatement
     public function execute($input_parameters = null)
     {
         $bound = $this->boundValues;
-        if(is_array($input_parameters)){
+        if (is_array($input_parameters)) {
             $bound = array_merge($bound, $input_parameters);
         }
         $p = $this->sonde->startProfile('Database');
@@ -72,6 +71,4 @@ class PDOStatementReporter extends \PDOStatement
 
         return $res;
     }
-
-
 }

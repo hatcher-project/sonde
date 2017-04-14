@@ -57,15 +57,15 @@ export default class Header{
 
         var self = this;
 
-        if(this.itemList.children.length === 1){
+        if (this.itemList.children.length === 1) {
             tab.classList.add('phpsonde-open');
             panel.classList.add('phpsonde-open');
         }
 
-        tab.addEventListener('click', function(){
+        tab.addEventListener('click', function () {
             var opened = self.bar.root.querySelectorAll('.phpsonde-panel-tab.phpsonde-open, .phpsonde-panel.phpsonde-open');
 
-            for(let i = 0; i < opened.length; i++){
+            for (let i = 0; i < opened.length; i++) {
                 opened[i].classList.remove('phpsonde-open');
             }
 

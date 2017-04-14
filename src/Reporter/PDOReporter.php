@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde\Reporter;
 
-
 use Hatcher\Sonde\BaseSonde;
 use Hatcher\Sonde\Sonde;
 use PDO;
@@ -107,7 +106,7 @@ class PDOReporter extends PDO
     /**
      * @inheritdoc
      */
-    public function prepare($statement, $driver_options = array())
+    public function prepare($statement, $driver_options = [])
     {
         return $this->pdo->prepare($statement, $driver_options);
     }
@@ -177,7 +176,6 @@ class PDOReporter extends PDO
      */
     public function __call($name, $args)
     {
-        return call_user_func_array(array($this->pdo, $name), $args);
+        return call_user_func_array([$this->pdo, $name], $args);
     }
-
 }
