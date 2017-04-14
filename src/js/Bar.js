@@ -3,6 +3,8 @@ import EventDispatcher from '../../node_modules/@azasypkin/event-dispatcher/bin/
 import Timeline from './Timeline'
 import Messages from './Messages'
 import onXhrCompletes from './onXhrCompletes'
+import makeElement from './makeElement'
+import resize from './resize'
 
 class Bar {
 
@@ -10,6 +12,10 @@ class Bar {
 
         this.root = document.createElement('div');
         this.root.classList.add('phpsonde');
+
+        // Sizer
+        this.sizer = makeElement('div', null, 'phpsonde-sizer');
+        this.root.appendChild(this.sizer);
 
         // Header
         this.header = new Header(this);
@@ -38,6 +44,18 @@ class Bar {
                 color: '#AAA'
             }
         };
+
+        // Bind sizebar
+        resize(this, this.sizer);
+
+        // Initialize state
+        if(localStorage){
+            let bodyheight = localStorage.getItem('phpsonde_bodyheight');
+            if(null !== bodyheight){
+                this.body.style.height = bodyheight;
+            }
+        }
+
     }
 
     open(){

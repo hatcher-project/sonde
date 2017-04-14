@@ -58,3 +58,15 @@
 .phpsonde-data-details td{
   border: 1px solid #DDD;
 }
+
+
+.phpsonde-sizer{
+  cursor: ns-resize;
+  height: 2px;
+  background: #2d2d2d;
+  display: none;
+}
+
+.phpsonde-open .phpsonde-sizer{
+  display: block;
+}
