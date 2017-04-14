@@ -32,10 +32,10 @@ class Renderer
      * The given javascript will require the sonde javascript library
      * that you can get with @see Renderer::getInlineJavascriptLibrary()
      *
-     * @param BaseSonde $sonde
+     * @param Sonde $sonde
      * @return mixed
      */
-    public static function getInlineJavascriptSetup(BaseSonde $sonde)
+    public static function getInlineJavascriptSetup(Sonde $sonde)
     {
         $template = file_get_contents(__DIR__ . '/setupTemplate.js');
         return str_replace('[[DATA]]', addslashes(json_encode($sonde->collectData())), $template);
@@ -47,10 +47,10 @@ class Renderer
      * The rendered setup needs the javascript library to work correctly
      *
      * @param $html
-     * @param BaseSonde $sonde
+     * @param Sonde $sonde
      * @return string
      */
-    public static function renderSetupInHtml($html, BaseSonde $sonde)
+    public static function renderSetupInHtml($html, Sonde $sonde)
     {
         $setup = self::getInlineJavascriptSetup($sonde);
         $setup = "<script>$setup</script>";
@@ -65,10 +65,10 @@ class Renderer
      * The rendered setup needs the javascript library to work correctly
      *
      * @param $html
-     * @param BaseSonde $sonde
+     * @param Sonde $sonde
      * @return string
      */
-    public static function renderAllInHtml($html, BaseSonde $sonde)
+    public static function renderAllInHtml($html, Sonde $sonde)
     {
         $js = self::getInlineJavascriptLibrary();
         $css = self::getInlineCssLibrary();
@@ -104,7 +104,13 @@ class Renderer
         return self::injectHtml($html, '<script type="text/javascript" src="' . $path . '"></script>', '</body>');
     }
 
-    public static function renderAsResponseHeaders(BaseSonde $sonde, $maxHeaderLength = 4090)
+    /**
+     * Get headers to be added to the http response
+     * @param Sonde $sonde
+     * @param int $maxHeaderLength
+     * @return array
+     */
+    public static function renderAsResponseHeaders(Sonde $sonde, $maxHeaderLength = 4090)
     {
         $headers = [];
         $headerName = 'phpsondereport';

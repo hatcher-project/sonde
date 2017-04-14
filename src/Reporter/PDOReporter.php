@@ -5,7 +5,6 @@
 
 namespace Hatcher\Sonde\Reporter;
 
-use Hatcher\Sonde\BaseSonde;
 use Hatcher\Sonde\Sonde;
 use PDO;
 use Hatcher\Sonde\Reporter\PDOStatementReporter;

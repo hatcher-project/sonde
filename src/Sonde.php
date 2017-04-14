@@ -5,13 +5,54 @@
 
 namespace Hatcher\Sonde;
 
-class Sonde extends BaseSonde
+class Sonde
 {
 
+    /**
+     * Construct a new sonde with profiler and message plugin by default
+     */
     public function __construct()
     {
         $this->plug('profiler', new Profiler());
         $this->plug('messages', new Messages());
+    }
+
+    /**
+     * @var Sondable[]
+     */
+    protected $sondables = [];
+
+    /**
+     * Adds a Sondable
+     * @param $name
+     * @param Sondable $sondable
+     */
+    public function plug($name, Sondable $sondable)
+    {
+        $this->sondables[$name] = $sondable;
+    }
+
+    /**
+     * get a Sondable previously registered with @see Sonde::plug method
+     * @param $name
+     * @return Sondable
+     */
+    public function get($name)
+    {
+        return $this->sondables[$name];
+    }
+
+    /**
+     * Collect all data and returns them as an associative array
+     * @return array
+     */
+    public function collectData()
+    {
+        $data = [];
+        foreach ($this->sondables as $s) {
+            $s->reportData($data);
+        }
+        return $data;
     }
 
     /**
