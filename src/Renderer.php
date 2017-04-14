@@ -95,7 +95,7 @@ class Renderer
      * @return string
      */
     public static function addExternalJs($path, $html){
-        return self::injectHtml($html, '<script type="text/javascript" src="' . $path . '">' , '</body>');
+        return self::injectHtml($html, '<script type="text/javascript" src="' . $path . '"></script>' , '</body>');
     }
 
     public static function renderAsResponseHeaders(BaseSonde $sonde, $maxHeaderLength = 4090){
