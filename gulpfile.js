@@ -29,10 +29,11 @@ gulp.task('sass', () => {
     .pipe(gulp.dest('dist'))
 });
 
-gulp.task('build', ['js']);
+gulp.task('build', ['js', 'sass']);
 
 
 
 gulp.task('watch', ['build'], function(){
     gulp.watch('src/js/**/*.js', ['js']);
+    gulp.watch('src/sass/**/*.scss', ['sass']);
 });
