@@ -5,7 +5,6 @@ document.addEventListener('DOMContentLoaded', function () {
         var bar = new window.HatcherSonde.Bar();
         var data = JSON.parse(rawData);
         bar.addReport('Request', data);
-        bar.open();
 
         bar.listenForXhrReports();
     } else {

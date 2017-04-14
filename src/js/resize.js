@@ -8,27 +8,20 @@ export default function resize(bar, sizer){
     function resize(e){
         let offset = bar.header.root.offsetHeight + sizer.offsetHeight;
         let height = window.innerHeight - e.clientY - offset;
-
-        if(height < 10){
-            height = 10;
-        }
-
-        bar.body.style.height = height;
+        bar.setHeight(height);
     }
 
 
     function stopResize(){
+        document.body.classList.remove('phpsonde-resizing');
         document.removeEventListener('mouseup', stopResize);
         document.removeEventListener('mousemove', resize);
-
-        if(localStorage){
-            localStorage.setItem('phpsonde_bodyheight', bar.body.style.height);
-        }
     }
 
     sizer.addEventListener('mousedown', function(e){
 
         e.preventDefault();
+        document.body.classList.add('phpsonde-resizing');
         document.addEventListener('mousemove', resize);
         document.addEventListener('mouseup', stopResize)
 

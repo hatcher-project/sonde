@@ -52,22 +52,64 @@ class Bar {
         if(localStorage){
             let bodyheight = localStorage.getItem('phpsonde_bodyheight');
             if(null !== bodyheight){
-                this.body.style.height = bodyheight;
+                this.setHeight(bodyheight, false);
+            }
+
+            let opened =  localStorage.getItem('phpsonde_baropened');
+            if(opened === 'true' || opened === true){
+                this.open();
             }
         }
 
+        let self = this;
+
+        // If window is too small, we change the size
+        window.addEventListener('resize', function(){
+            if(self.root.offsetHeight > window.innerHeight - 50){
+                self.setHeight(window.innerHeight, false);
+            }
+        });
+
+    }
+
+    setHeight(height, store){
+
+        store = store === undefined ? true : store === true;
+
+        height = parseInt(height, 10);
+
+        if(height < 0){
+            height = 10;
+        } else if (height > window.innerHeight - 50) {
+            height = window.innerHeight - 50;
+        }
+
+        this.body.style.height = height;
+
+        if(store && localStorage){
+            localStorage.setItem('phpsonde_bodyheight', this.body.style.height);
+        }
     }
 
     open(){
         this.root.classList.add('phpsonde-open');
+        if(localStorage){
+            localStorage.setItem('phpsonde_baropened', true);
+        }
     }
 
     close(){
         this.root.classList.remove('phpsonde-open');
+        if(localStorage){
+            localStorage.setItem('phpsonde_baropened', false);
+        }
     }
 
     toggle(){
         this.root.classList.toggle('phpsonde-open');
+        if(localStorage){
+            localStorage.setItem('phpsonde_baropened', this.root.classList.contains('phpsonde-open'));
+        }
     }
 
     addProfileType(name, data){

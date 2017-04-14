@@ -38,7 +38,10 @@ $profiles = $sonde->collectData();
 
 
 $html = file_get_contents(__DIR__ . '/webpage.html');
-$html = \Hatcher\Sonde\Renderer::renderAllInHtml($html, $sonde);
+
+$html = \Hatcher\Sonde\Renderer::addExternalJs('/dist/index.js', $html);
+$html = \Hatcher\Sonde\Renderer::addExternalCss('/dist/index.css', $html);
+$html = \Hatcher\Sonde\Renderer::renderSetupInHtml($html, $sonde);
 
 
 echo $html;

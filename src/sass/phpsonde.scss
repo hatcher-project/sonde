@@ -70,3 +70,8 @@
 .phpsonde-open .phpsonde-sizer{
   display: block;
 }
+
+// Keep resize icon during all the resize process
+body.phpsonde-resizing{
+  cursor: ns-resize;
+}
