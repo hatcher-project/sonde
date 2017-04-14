@@ -2,6 +2,7 @@ import Header from './Header'
 import EventDispatcher from '../../node_modules/@azasypkin/event-dispatcher/bin/event-dispatcher.es2016';
 import Timeline from './Timeline'
 import Messages from './Messages'
+import onXhrCompletes from './onXhrCompletes'
 
 class Bar {
 
@@ -75,6 +76,48 @@ class Bar {
 
     showReport(index){
         this.emit('showReport', index);
+    }
+
+    listenForXhrReports(){
+        var self = this;
+        onXhrCompletes(function(xhr){
+
+            let headerName = 'phpsondereport';
+
+            let report = xhr.getResponseHeader(headerName);
+
+            if(report){
+
+                let i = 1;
+                let chunk;
+                while(chunk = xhr.getResponseHeader(headerName + '-' + i)){
+                    report += chunk;
+                    i++;
+                }
+
+                try{
+                    report = atob(report);
+                    report = JSON.parse(report);
+                } catch (e){
+                    console.error('Sonde was unable to decode data fro ajax request, please see the error below'
+                        + ' and report it on https://github.com/hatcher-project/sonde/issues'
+                        + ' with as much details as possible, including your browser version');
+                    console.error(e);
+                }
+
+                if(report.reportBundle){
+                    for(let i = 0; i < report.reportBundle.length; i++){
+                        self.addReport('xhr', report.reportBundle[i]);
+                    }
+                } else {
+                    self.addReport('XHR', report);
+                }
+
+
+            }
+
+
+        });
     }
 
 }

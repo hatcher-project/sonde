@@ -56,7 +56,6 @@ TODO
 ----
 
 - More plugin (pdo, twig...)
-- Handle ajax
 - Handle redirection stacking
 - Make colors and names configurable from php
 - Provide more messages types (error, warning, success, info)

@@ -78,6 +78,29 @@ class Renderer
         return $html;
     }
 
+    public static function renderAsResponseHeaders(BaseSonde $sonde, $maxHeaderLength = 4090){
+        $headers = [];
+        $headerName = 'phpsondereport';
+
+        $chunks = [];
+        $data = json_encode($sonde->collectData());
+        $data = base64_encode($data);
+        while (strlen($data) > $maxHeaderLength) {
+            $chunks[] = substr($data, 0, $maxHeaderLength);
+            $data = substr($data, $maxHeaderLength);
+        }
+        $chunks[] = $data;
+
+        $headers[$headerName] = $chunks[0];
+
+        if(count($chunks) > 1){
+            for($i = 1; $i < count($chunks); $i++){
+                $headers[$headerName . '-' . $i] = $chunks[$i];
+            }
+        }
+
+        return $headers;
+    }
 
     private static function injectHtml($html, $code, $before)
     {

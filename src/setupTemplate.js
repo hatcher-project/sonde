@@ -6,6 +6,9 @@ document.addEventListener('DOMContentLoaded', function(){
         var data = JSON.parse(rawData);
         bar.addReport('Request', data);
         bar.open();
+
+        bar.listenForXhrReports();
+
     } else {
         console.error('Unable to find the HatcherSonde library. Make sure you included the javascript library');
     }

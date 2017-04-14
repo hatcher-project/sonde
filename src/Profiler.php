@@ -39,13 +39,18 @@ class Profiler implements Sondable
             $profilesOutput = [];
 
             foreach ($this->profiles as $p) {
-                $profilesOutput[] = [
+                $profileExport = [
                     'type' => $p->getType(),
                     'start' => round(1000000 * ($p->getStartTime() - $first)),
                     'stop' => round(1000000 * ($p->getStopTime() - $first)),
-                    'data' => $p->getData(),
                     'trace' => $p->getStartTraceText()
                 ];
+
+                if($profileData = $p->getData()){
+                    $profileExport[] = $profileData;
+                }
+
+                $profilesOutput[] = $profileExport;
             }
 
             $data['profiles'] = $profilesOutput;
