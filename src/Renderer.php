@@ -78,6 +78,26 @@ class Renderer
         return $html;
     }
 
+    /**
+     * Adds an external css file to the given html with a <link> tag
+     * @param $path
+     * @param $html
+     * @return string
+     */
+    public static function addExternalCss($path, $html){
+        return self::injectHtml($html, '<link rel="stylesheet" type="text/css" href="' . $path . '">' , '</head>');
+    }
+
+    /**
+     * Adds an external js file to the given html with a <script src='...'> tag
+     * @param $path
+     * @param $html
+     * @return string
+     */
+    public static function addExternalJs($path, $html){
+        return self::injectHtml($html, '<script type="text/javascript" src="' . $path . '">' , '</body>');
+    }
+
     public static function renderAsResponseHeaders(BaseSonde $sonde, $maxHeaderLength = 4090){
         $headers = [];
         $headerName = 'phpsondereport';
