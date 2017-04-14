@@ -1,6 +1,6 @@
 {
 
-  "name": "hatcher/sonde",
+  "name": "hatcher-project/sonde",
   "description": "Php application profiler with a lightweight html debug bar integration",
   "type": "library",
   "keywords": ["profile", "debug", "performances"],

@@ -14,7 +14,17 @@ only vanilla javascript and a very few styles.
 Quick start
 -----------
 
+
+Install the library with composer:
+
+``composer require hatcher/sonde``
+
+Start playing with the bar
+
 ```php
+
+  require 'vendor/autoload.php';
+
   use Hatcher\Sonde\Sonde;
   use Hatcher\Sonde\Renderer;
   
@@ -38,8 +48,10 @@ Quick start
   $p2->stop();
   
   // Start a timer to time the rendering process
-  $p3->startProfile('process');
-  $html = $view->render(...);
+  $p3->startProfile('view');
+  
+  $html = '<html><head></head><body></body></html>';
+  
   $p3->stop();
   
   $p1->stop();
@@ -144,6 +156,18 @@ Demo:
   
   echo 'some response';
 ```
+
+Thanks
+------
+
+Thanks to [php-debugbar](https://github.com/maximebf/php-debugbar) that served as inspiration for many things in the 
+php part of the application.
+
+License
+-------
+
+[Fair License](https://opensource.org/licenses/Fair) 
+
 
 TODO
 ----
