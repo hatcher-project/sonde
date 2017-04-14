@@ -24,7 +24,9 @@ gulp.task('sass', () => {
     gulp.src('src/sass/index.scss')
     .pipe(sourcemaps.init())
         .pipe(sass().on('error', sass.logError))
-        .pipe(cssnano())
+        .pipe(cssnano({
+            safe: true
+        }))
     .pipe(sourcemaps.write(''))
     .pipe(gulp.dest('dist'))
 });

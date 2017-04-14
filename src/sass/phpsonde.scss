@@ -6,12 +6,20 @@
   background: white;
   font-family: monospace;
   color: #333;
+  z-index: 99999999;
+  line-height: 1.2em;
+  font-size: 13px;
 }
 
 .phpsonde select{
   border-radius: 3px;
   padding: 0;
   margin: 0;
+  line-height: inherit;
+  height: auto;
+  width: auto;
+  font-family: monospace;
+  font-size: 0.95em;
 }
 
 .phpsonde-bubble{
