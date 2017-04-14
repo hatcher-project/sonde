@@ -172,7 +172,11 @@ License
 TODO
 ----
 
-- More plugin (pdo, twig...)
+- More plugin (twig...)
+- Better data preview in timeline (array, int=0...)
+- Database panel plugin
+- Resizable bar
+- PDO Report doc
 - Handle redirection stacking
 - Make colors and names configurable from php
 - Provide more messages types (error, warning, success, info)

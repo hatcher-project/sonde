@@ -75,9 +75,13 @@ class Profile
      * User data
      * @return array
      */
-    public function getData()
+    public function getData($name = null)
     {
-        return $this->data;
+        if(null === $name){
+            return $this->data;
+        } else {
+            return isset($this->data[$name]) ? $this->data[$name] : null;
+        }
     }
 
     public function getStartTrace()

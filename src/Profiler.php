@@ -46,8 +46,9 @@ class Profiler implements Sondable
                     'trace' => $p->getStartTraceText()
                 ];
 
-                if($profileData = $p->getData()){
-                    $profileExport[] = $profileData;
+                $profileData = $p->getData();
+                if (!empty($data)) {
+                    $profileExport['data'] = $profileData;
                 }
 
                 $profilesOutput[] = $profileExport;
