@@ -76,7 +76,7 @@ class Bar {
 
         store = store === undefined ? true : store === true;
 
-        height = parseInt(height, 10);
+        height = parseInt(height, 10) || 300;
 
         if(height < 0){
             height = 10;
@@ -84,10 +84,10 @@ class Bar {
             height = window.innerHeight - 50;
         }
 
-        this.body.style.height = height;
+        this.body.style.height = height + 'px';
 
         if(store && localStorage){
-            localStorage.setItem('phpsonde_bodyheight', this.body.style.height);
+            localStorage.setItem('phpsonde_bodyheight', height);
         }
     }
 
