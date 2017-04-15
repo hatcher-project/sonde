@@ -42,6 +42,14 @@ class Bar {
         this.profileTypes = {
             'default': {
                 color: '#AAA'
+            },
+
+            'database': {
+                color: '#ECB400'
+            },
+
+            'view': {
+                color: '#6DC520'
             }
         };
 
@@ -113,7 +121,7 @@ class Bar {
     }
 
     addProfileType(name, data){
-        this.profileTypes[name] = data;
+        this.profileTypes[name.toLocaleLowerCase()] = data;
     }
 
 

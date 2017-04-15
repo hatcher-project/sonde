@@ -48,25 +48,34 @@ export default class Timeline{
 
         for (let i = 0; i<report.data.profiles.length; i++) {
             let profile = report.data.profiles[i];
-            let profileTypeName = this.bar.profileTypes.hasOwnProperty(profile.type) ? profile.type : 'default';
+
+            // Find profile type config
+            let profileTypeRealName = profile.type.toLowerCase(); // Case insensitive
+            let profileTypeName = this.bar.profileTypes.hasOwnProperty(profileTypeRealName) ? profileTypeRealName : 'default';
             let profileType =  this.bar.profileTypes[profileTypeName];
 
-            if (!typeList.hasOwnProperty(profile.type)) {
-                typeList[profile.type] = profileType.label || profile.type;
+            // Add it to the list of filter
+            if (!typeList.hasOwnProperty(profileTypeRealName)) {
+                typeList[profileTypeRealName] = profileType.label || profileTypeRealName;
             }
 
+            // Create elements
             let li = document.createElement('li');
-            li.setAttribute('data-phpsonde-type', profile.type);
+            li.setAttribute('data-phpsonde-type', profileTypeRealName);
 
             let wrapper = document.createElement('div');
             li.appendChild(wrapper);
             wrapper.classList.add('phpsonde-summary');
 
+            // leading color
+            let bullet = makeElement('div', null, 'phpsonde-color-helper');
+            wrapper.appendChild(bullet);
+            bullet.style['background'] = profileType.color;
+
             // Label
-            let label = document.createElement('div');
-            label.classList.add('phpsonde-label');
-            wrapper.appendChild(label);
-            label.innerHTML = profileType.label || profile.type;
+            wrapper.appendChild(
+                makeElement('div', profileType.label || profile.type, 'phpsonde-label')
+            );
 
             // Duration
             let localDuration = document.createElement('div');
@@ -156,6 +165,10 @@ export default class Timeline{
 
     }
 
+    /**
+     * Show only items of given type. This in case insensitive.
+     * @param name
+     */
     filterType(name){
 
         if (name == -1) {
@@ -165,7 +178,7 @@ export default class Timeline{
         } else {
             for (let i = 0; i < this.itemList.children.length; i++) {
                 let element = this.itemList.children[i];
-                if (element.getAttribute('data-phpsonde-type') === name) {
+                if (element.getAttribute('data-phpsonde-type').toLocaleLowerCase() === name) {
                     this.itemList.children[i].classList.remove('phpsonde-hidden');
                 } else {
                     this.itemList.children[i].classList.add('phpsonde-hidden');
