@@ -97,11 +97,13 @@ class Profile
             $r = '';
 
             if (isset($trace['class'])) {
-                $r .= $trace['class'] . $trace['type'] . $trace['function'] . '(...)';
+                $r .= $trace['class'] . $trace['type'];
             }
 
+            $r .= $trace['function'] . '(...)';
+
             if (isset($trace['file'])) {
-                $r .= ' ' . $trace['file'] . ':' . $trace['line'];
+                $r .= "\t" . $trace['file'] . ':' . $trace['line'];
             }
 
             $text[] = $r;
