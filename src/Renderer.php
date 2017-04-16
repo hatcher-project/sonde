@@ -38,7 +38,15 @@ class Renderer
     public static function getInlineJavascriptSetup(Sonde $sonde)
     {
         $template = file_get_contents(__DIR__ . '/setupTemplate.js');
-        return str_replace('[[DATA]]', addslashes(json_encode($sonde->collectData())), $template);
+        $template = str_replace('[[DATA]]', addslashes(json_encode($sonde->collectData())), $template);
+
+        $pluginContent = '';
+        foreach ($sonde->getJsPluginFiles() as $file) {
+            $pluginContent .= file_get_contents($file) . ';';
+        }
+        $template = str_replace('[[PLUGINS]]', $pluginContent, $template);
+
+        return $template;
     }
 
     /**

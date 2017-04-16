@@ -1,8 +1,11 @@
 document.addEventListener('DOMContentLoaded', function () {
     if (window.HatcherSonde) {
-        var rawData = '[[DATA]]';
-
         var bar = new window.HatcherSonde.Bar();
+
+        [[PLUGINS]]
+
+
+        var rawData = '[[DATA]]';
         var data = JSON.parse(rawData);
         bar.addReport('Request', data);
 

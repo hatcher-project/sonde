@@ -8,6 +8,8 @@ namespace Hatcher\Sonde;
 class Sonde
 {
 
+    protected $jsPluginFiles = [];
+
     /**
      * Construct a new sonde with profiler and message plugin by default
      */
@@ -84,5 +86,24 @@ class Sonde
         /* @var \Hatcher\Sonde\Messages $messages; */
         $messages = $this->get('messages');
         $messages->addMessage($message);
+    }
+
+
+    /**
+     * Adds a javascript file that will be injected in the setup script.
+     * @param string $path path to the file
+     */
+    public function addJsPluginFile($path)
+    {
+        $this->jsPluginFiles[] = $path;
+    }
+
+    /**
+     * Files to be injected in the setup scripts
+     * @return array
+     */
+    public function getJsPluginFiles()
+    {
+        return $this->jsPluginFiles;
     }
 }

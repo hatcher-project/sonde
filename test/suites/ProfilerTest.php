@@ -26,7 +26,8 @@ class ProfilerTest extends \PHPUnit_Framework_TestCase
         $profiler->addProfile($p1);
         $profiler->addProfile($p2);
 
-        $profiles = $profiler->renderProfiles();
+        $profiles = [];
+        $profiler->reportData($profiles);
 
         $this->assertCount(2, $profiles['profiles']);
         $this->assertEquals('foo', $profiles['profiles'][0]['type']);
