@@ -43,7 +43,7 @@ class Profile
         $this->data[$name] = $value;
     }
 
-    public function setData($data)
+    public function setData(array $data)
     {
         $this->data = $data;
     }
