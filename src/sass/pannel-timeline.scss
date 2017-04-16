@@ -18,9 +18,13 @@
 }
 
 .phpsonde-timeline-panel .phpsonde-label{
-  width: 130px;
+  min-width: 185px;
+  width: 22%;
   text-align: left;
   padding-left: 8px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 .phpsonde-timeline-panel .phpsonde-duration{
   text-align: right;
@@ -57,4 +61,10 @@
 
 .phpsonde-timeline-panel .phpsonde-color-helper{
   width: 5px;
+}
+
+
+.phpsonde-synopsis{
+  font-size: 0.8em;
+  color: #888;
 }

@@ -73,8 +73,16 @@ export default class Timeline{
             bullet.style['background'] = profileType.color;
 
             // Label
+            let labelContent = profileType.label || profile.type;
+            console.log(profileType.synopsis);
+            if(profileType.synopsis && typeof profileType.synopsis === 'function'){
+                let synopsisValue = profileType.synopsis(profile);
+                if(synopsisValue){
+                    labelContent += ` <span class="phpsonde-synopsis">${synopsisValue}</span>`;
+                }
+            }
             wrapper.appendChild(
-                makeElement('div', profileType.label || profile.type, 'phpsonde-label')
+                makeElement('div', labelContent, 'phpsonde-label')
             );
 
             // Duration
@@ -116,7 +124,7 @@ export default class Timeline{
             // Data Details
             if (profile.data && Object.keys(profile.data).length > 0) {
                 let dataDetail = makeElement('div', null, 'phpsonde-data-details');
-                dataDetail.appendChild(makeElement('h3', 'Details'));
+                dataDetail.appendChild(makeElement('h6', 'Details'));
                 unfoldable.appendChild(dataDetail);
 
                 let table = makeElement('table');
@@ -135,7 +143,7 @@ export default class Timeline{
             stackTrace.classList.add('phpsonde-stacktrace');
             let stackTracePre = document.createElement('pre');
             stackTracePre.innerHTML = profile.trace;
-            stackTrace.appendChild(makeElement('h3', 'Stack Trace'));
+            stackTrace.appendChild(makeElement('h6', 'Stack Trace'));
             stackTrace.appendChild(stackTracePre);
             unfoldable.appendChild(stackTrace);
 
