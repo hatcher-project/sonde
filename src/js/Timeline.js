@@ -1,6 +1,10 @@
 import formatDuration from './formatDuration'
 import makeElement from './makeElement'
 
+function isParentOf(parent, child){
+    return child.start > parent.start && child.start < parent.stop;
+}
+
 export default class Timeline{
 
     constructor(bar){
@@ -46,6 +50,9 @@ export default class Timeline{
 
         let typeList = {};
 
+
+        let parentStack = [];
+
         for (let i = 0; i<report.data.profiles.length; i++) {
             let profile = report.data.profiles[i];
 
@@ -74,13 +81,30 @@ export default class Timeline{
 
             // Label
             let labelContent = profileType.label || profile.type;
-            console.log(profileType.synopsis);
             if(profileType.synopsis && typeof profileType.synopsis === 'function'){
                 let synopsisValue = profileType.synopsis(profile);
                 if(synopsisValue){
                     labelContent += ` <span class="phpsonde-synopsis">${synopsisValue}</span>`;
                 }
             }
+
+            // Indentation in label
+            while(parentStack.length > 0){
+                if(isParentOf(parentStack[parentStack.length - 1], profile)){
+                    break;
+                } else {
+                    parentStack.pop();
+                }
+            }
+
+            if(parentStack.length > 0){
+                for(let j = 0; j < parentStack.length; j++){
+                    labelContent = '<div class="phpsonde-indent"></div>' + labelContent;
+                }
+            }
+            parentStack.push(profile);
+
+            // Add label
             wrapper.appendChild(
                 makeElement('div', labelContent, 'phpsonde-label')
             );
