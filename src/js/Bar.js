@@ -57,14 +57,14 @@ class Bar {
         resize(this, this.sizer);
 
         // Initialize state
-        if(localStorage){
+        if (localStorage) {
             let bodyheight = localStorage.getItem('phpsonde_bodyheight');
-            if(null !== bodyheight){
+            if (null !== bodyheight) {
                 this.setHeight(bodyheight, false);
             }
 
             let opened =  localStorage.getItem('phpsonde_baropened');
-            if(opened === 'true' || opened === true){
+            if (opened === 'true' || opened === true) {
                 this.open();
             }
         }
@@ -72,8 +72,8 @@ class Bar {
         let self = this;
 
         // If window is too small, we change the size
-        window.addEventListener('resize', function(){
-            if(self.root.offsetHeight > window.innerHeight - 50){
+        window.addEventListener('resize', function () {
+            if (self.root.offsetHeight > window.innerHeight - 50) {
                 self.setHeight(window.innerHeight, false);
             }
         });
@@ -86,7 +86,7 @@ class Bar {
 
         height = parseInt(height, 10) || 300;
 
-        if(height < 0){
+        if (height < 0) {
             height = 10;
         } else if (height > window.innerHeight - 50) {
             height = window.innerHeight - 50;
@@ -94,28 +94,28 @@ class Bar {
 
         this.body.style.height = height + 'px';
 
-        if(store && localStorage){
+        if (store && localStorage) {
             localStorage.setItem('phpsonde_bodyheight', height);
         }
     }
 
     open(){
         this.root.classList.add('phpsonde-open');
-        if(localStorage){
+        if (localStorage) {
             localStorage.setItem('phpsonde_baropened', true);
         }
     }
 
     close(){
         this.root.classList.remove('phpsonde-open');
-        if(localStorage){
+        if (localStorage) {
             localStorage.setItem('phpsonde_baropened', false);
         }
     }
 
     toggle(){
         this.root.classList.toggle('phpsonde-open');
-        if(localStorage){
+        if (localStorage) {
             localStorage.setItem('phpsonde_baropened', this.root.classList.contains('phpsonde-open'));
         }
     }
