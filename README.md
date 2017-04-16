@@ -157,6 +157,65 @@ Demo:
   echo 'some response';
 ```
 
+Augment the javascript
+----------------------
+
+You can augment the setup script and add plugins to the bar.
+To do this you will inject your own javascript into the setup script.
+The example below will show how to customize color of elements in the timeline:
+
+
+First write a js file that will contain the injected script:
+
+```js
+  // foo.js
+  
+  // bar is a javascript variable that we can modify 
+  
+  bar.addProfileType('foo', {
+    color: "#3D00A8"
+  });
+```
+
+Then in the php we add this file in the sonde:
+
+```php
+  $sonde->addJsPluginFile(__DIR__ . '/foo.js');
+  
+  // And now when we add a profile named foo it will get the color specified in the javascript above
+  $p = $sonde->startProfile('foo');
+```
+
+When customizing javascript, you are not limited to the color. See next section for a full list of feature.
+
+
+Javascript plugin
+-----------------
+
+As stated in the previous section you can add plugin to the bar. Here is the list of what you can customize
+
+### Customize the timeline
+
+```js
+  bar.addProfileType('foo',
+    {
+      // All foo elements will have this color in the timeline
+      color: "#3D00A8", 
+      
+      // The output of this function will be added after the element title in the timeline. It helps
+      // To have a short details about the element at a glance 
+      synopsis: function(profile){
+         if (profile.data) {
+            return profile.data.ok ? 'OK' : '<span style="color: red;">FAIL</span>';;
+         }
+         return '';
+      }
+    }
+  );
+```
+
+
+
 Thanks
 ------
 

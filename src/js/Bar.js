@@ -45,11 +45,21 @@ class Bar {
             },
 
             'database': {
-                color: '#ECB400'
+                color: '#ECB400',
+                synopsis: profile => {
+                    if(profile.data){
+                        return profile.data.statement;
+                    }
+                }
             },
 
             'view': {
-                color: '#6DC520'
+                color: '#6DC520',
+                synopsis: profile => {
+                    if(profile.data){
+                        return profile.data.name;
+                    }
+                }
             }
         };
 
