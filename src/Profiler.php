@@ -47,7 +47,7 @@ class Profiler implements Sondable
                 ];
 
                 $profileData = $p->getData();
-                if (!empty($data)) {
+                if (!empty($profileData)) {
                     $profileExport['data'] = $profileData;
                 }
 
