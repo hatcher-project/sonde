@@ -27,7 +27,7 @@ class Profiler implements Sondable
                     $aStart = $a->getStartTime();
                     $bStart = $b->getStartTime();
 
-                    return $aStart - $bStart;
+                    return $aStart - $bStart > 0 ? 1 : -1;
                 }
             );
 
