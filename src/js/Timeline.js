@@ -116,6 +116,10 @@ export default class Timeline{
             localDuration.innerHTML = formatDuration(profile.stop - profile.start);
             wrapper.appendChild(localDuration);
 
+            // Duration in percent
+            let durationPct = 100 * (profile.stop - profile.start) / duration;
+            wrapper.appendChild(makeElement('div', durationPct.toFixed(1) + '%', 'phpsonde-duraction-pct'));
+
             // Timebar
             let timeBar = document.createElement('div');
             // Timebar wrapper
@@ -126,7 +130,6 @@ export default class Timeline{
 
             // Timebar position
             let startPct = 100 * profile.start / duration;
-            let durationPct = 100 * (profile.stop - profile.start) / duration;
             timeBar.style['margin-left'] = startPct + '%';
 
             if (durationPct > 0) {

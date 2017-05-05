@@ -26,10 +26,19 @@
   overflow: hidden;
   text-overflow: ellipsis;
 }
-.phpsonde-timeline-panel .phpsonde-duration{
+
+
+.phpsonde-duration,
+.phpsonde-duraction-pct{
   text-align: right;
   width: 65px;
-  padding-right: 8px;
+  padding-right: 3px;
+}
+
+.phpsonde-duraction-pct{
+  font-size: 0.9em;
+  color: #999;
+  width: 45px;
 }
 
 .phpsonde-timeline-panel header{
