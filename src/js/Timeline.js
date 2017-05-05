@@ -162,7 +162,16 @@ export default class Timeline{
                     table.appendChild(row);
 
                     row.appendChild(makeElement('td', i));
-                    row.appendChild(makeElement('td', profile.data[i]));
+
+                    var renderedData = profile.data[i];
+                    if(typeof renderedData == 'object'){
+                        renderedData = JSON.stringify(renderedData, null, 2);
+                        row.appendChild(makeElement('td', renderedData, 'phpsonde-datapre'));
+                    } else {
+                        row.appendChild(makeElement('td', renderedData));
+                    }
+
+
                 }
             }
 
