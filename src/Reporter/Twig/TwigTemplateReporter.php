@@ -117,7 +117,19 @@ class TwigTemplateReporter implements \Twig_TemplateInterface
 
     public function render(array $context)
     {
-        return $this->template->render($context);
+        $level = ob_get_level();
+        ob_start();
+        try {
+            $this->display($context);
+        } catch (\Exception $e) {
+            while (ob_get_level() > $level) {
+                ob_end_clean();
+            }
+
+            throw $e;
+        }
+
+        return ob_get_clean();
     }
 
 
