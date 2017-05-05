@@ -1,6 +1,7 @@
 {
   "name": "hatcher-sonde",
   "devDependencies": {
+    "gulp": "^3.9.1",
     "gulp-better-rollup": "^1.1.1",
     "gulp-cssnano": "^2.1.2",
     "gulp-sass": "^3.1.0",

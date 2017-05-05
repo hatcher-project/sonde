@@ -47,7 +47,7 @@ class Bar {
             'database': {
                 color: '#ECB400',
                 synopsis: profile => {
-                    if(profile.data){
+                    if (profile.data) {
                         return profile.data.statement;
                     }
                 }
@@ -56,8 +56,16 @@ class Bar {
             'view': {
                 color: '#6DC520',
                 synopsis: profile => {
-                    if(profile.data){
+                    if (profile.data) {
                         return profile.data.name;
+                    }
+                }
+            },
+            'elasticsearch': {
+                color: '#6db3c5',
+                synopsis: profile => {
+                    if (profile.data) {
+                        return profile.data.uri;
                     }
                 }
             }

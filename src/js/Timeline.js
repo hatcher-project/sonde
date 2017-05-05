@@ -1,7 +1,8 @@
 import formatDuration from './formatDuration'
 import makeElement from './makeElement'
 
-function isParentOf(parent, child){
+function isParentOf(parent, child)
+{
     return child.start > parent.start && child.start < parent.stop;
 }
 
@@ -81,24 +82,24 @@ export default class Timeline{
 
             // Label
             let labelContent = profileType.label || profile.type;
-            if(profileType.synopsis && typeof profileType.synopsis === 'function'){
+            if (profileType.synopsis && typeof profileType.synopsis === 'function') {
                 let synopsisValue = profileType.synopsis(profile);
-                if(synopsisValue){
+                if (synopsisValue) {
                     labelContent += ` <span class="phpsonde-synopsis">${synopsisValue}</span>`;
                 }
             }
 
             // Indentation in label
-            while(parentStack.length > 0){
-                if(isParentOf(parentStack[parentStack.length - 1], profile)){
+            while (parentStack.length > 0) {
+                if (isParentOf(parentStack[parentStack.length - 1], profile)) {
                     break;
                 } else {
                     parentStack.pop();
                 }
             }
 
-            if(parentStack.length > 0){
-                for(let j = 0; j < parentStack.length; j++){
+            if (parentStack.length > 0) {
+                for (let j = 0; j < parentStack.length; j++) {
                     labelContent = '<div class="phpsonde-indent"></div>' + labelContent;
                 }
             }
