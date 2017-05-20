@@ -8,7 +8,7 @@ namespace Hatcher\Sonde\Reporter\Twig;
 
 use Hatcher\Sonde\Sonde;
 
-class TwigTemplateReporter implements \Twig_TemplateInterface
+class TwigTemplateReporter extends \Twig_Template
 {
 
     /**
@@ -40,6 +40,16 @@ class TwigTemplateReporter implements \Twig_TemplateInterface
     public function __toString()
     {
         return $this->template->__toString();
+    }
+
+    public function doDisplay(array $context, array $blocks = array())
+    {
+        return $this->template->doDisplay($context, $blocks);
+    }
+
+    public function getTemplateName()
+    {
+        return $this->template->getTemplateName();
     }
 
     public function getDebugInfo()
