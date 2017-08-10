@@ -11,7 +11,7 @@ export default class Header{
 
         var logo = document.createElement('div');
         this.root.appendChild(logo);
-        logo.innerHTML = 'logo';
+        logo.innerHTML = 'sonde';
 
         this.reportSelect = document.createElement('select');
         var selectWraper = document.createElement('div');

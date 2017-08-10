@@ -43,7 +43,7 @@ class Profiler implements Sondable
                     'type' => $p->getType(),
                     'start' => round(1000000 * ($p->getStartTime() - $first)),
                     'stop' => round(1000000 * ($p->getStopTime() - $first)),
-                    'trace' => $p->getStartTraceText()
+                    // 'trace' => $p->getStartTraceText()
                 ];
 
                 $profileData = $p->getData();
